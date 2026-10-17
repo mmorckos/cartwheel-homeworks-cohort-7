@@ -35,6 +35,7 @@ from typing import Any, AsyncIterator
 from agents import Runner, SQLiteSession
 from fastapi import FastAPI, Header, HTTPException
 from opentelemetry import trace
+from opentelemetry.instrumentation.openai_agents.utils import should_send_prompts
 from pydantic import BaseModel
 
 from agent import db
@@ -123,8 +124,25 @@ def create_session(body: SessionCreate) -> dict[str, Any]:
     session id and a signed token. The token payload must contain session_id,
     user_id, role, store_id, and issued_at.
     """
-    ### YOUR CODE HERE (HW2)
-    raise NotImplementedError("HW2: implement POST /sessions")
+    if body.role not in ROLES:
+        raise HTTPException(status_code=400, detail=f"unknown role: {body.role!r}")
+    with db.connection() as conn:
+        user = db.get_user(conn, body.user_id)
+    if user is None:
+        raise HTTPException(status_code=404, detail=f"unknown user: {body.user_id}")
+    if user.role != body.role:
+        raise HTTPException(status_code=403, detail="role does not match the user's stored role")
+    ctx = AuthContext(user_id=user.id, role=user.role, store_id=user.store_id)
+    session_id = uuid.uuid4().hex
+    _SESSIONS[session_id] = (ctx, SQLiteSession(session_id, str(SESSIONS_DB)))
+    token = create_token({
+        "session_id": session_id,
+        "user_id": ctx.user_id,
+        "role": ctx.role,
+        "store_id": ctx.store_id,
+        "issued_at": int(time.time()),
+    })
+    return {"session_id": session_id, "token": token}
 
 
 def _authorize(session_id: str, authorization: str | None) -> AuthContext:
@@ -138,6 +156,11 @@ def _authorize(session_id: str, authorization: str | None) -> AuthContext:
     if session_id not in _SESSIONS:
         raise HTTPException(status_code=404, detail="unknown session (server restarted?)")
     return _SESSIONS[session_id][0]
+
+
+def _genai_messages(role: str, text: str) -> str:
+    """One message in the OTel GenAI format, as a JSON array."""
+    return json.dumps([{"role": role, "parts": [{"type": "text", "content": text}]}])
 
 
 @app.post("/sessions/{session_id}/messages")
@@ -158,8 +181,27 @@ async def post_message(
     gen_ai.output.messages on the root span as JSON arrays of OTel GenAI
     messages with role and parts fields.
     """
-    ### YOUR CODE HERE (HW2)
-    raise NotImplementedError("HW2: implement the traced message endpoint")
+    ctx = _authorize(session_id, authorization)
+    session = _SESSIONS[session_id][1]
+    agent = build_agent(ctx, model=body.model)
+    version = prompt_version()
+    capture = should_send_prompts()  # same TRACELOOP_TRACE_CONTENT check as the model spans
+    with _tracer.start_as_current_span("cartwheel.session_message") as span:
+        span.set_attribute("cartwheel.session_id", session_id)
+        span.set_attribute("cartwheel.user_role", ctx.role)
+        span.set_attribute("cartwheel.user_id", str(ctx.user_id))
+        span.set_attribute("cartwheel.prompt_version", version)
+        if body.scenario_id:
+            span.set_attribute("cartwheel.scenario_id", body.scenario_id)
+        if capture:
+            span.set_attribute("gen_ai.input.messages", _genai_messages("user", body.message))
+        result = await Runner.run(
+            agent, body.message, session=session, context=ctx, max_turns=MAX_TURNS
+        )
+        reply = str(result.final_output)
+        if capture:
+            span.set_attribute("gen_ai.output.messages", _genai_messages("assistant", reply))
+    return {"session_id": session_id, "reply": reply, "prompt_version": version}
 
 
 @app.get("/health")
