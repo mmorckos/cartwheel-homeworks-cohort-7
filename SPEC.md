@@ -76,6 +76,8 @@ Successful results contain `ok: true` and the result fields. Expected failures c
 | TOOL-8 | `cancel_order` | order identifier, reason | marks an eligible order cancelled | write |
 | TOOL-9 | `escalate_to_human` | summary, context | creates a support ticket | write |
 
+For TOOL-8, the agent takes the cancellation reason from the user's request and does not ask for it separately.
+
 ### Success and failure contracts
 
 | Tool | On success | On failure |
@@ -100,6 +102,10 @@ The following cases always go to a human:
   order record.
 - **ESC-4.** Any case where the agent is unsure whether policy allows an action.
 
+Other requests stay with the agent:
+
+- **ESC-5.** Do not escalate, or offer to escalate, a request that policy and the order record resolve and that no case above covers. State the decision and cite the policy.
+
 ## 6. Other response requirements
 
 Requirements that do not fit in the sections above, including tone and style guidelines.
@@ -109,3 +115,5 @@ Requirements that do not fit in the sections above, including tone and style gui
 - **RESP-3.** State when required information is missing or inconsistent, rather than inventing a value.
 - **RESP-4.** Explain refusals and escalations without revealing inaccessible order or user information.
 - **RESP-5.** Use direct and respectful language that explains the relevant decision.
+- **RESP-6.** Ask the user only for information a tool accepts or that decides the next step.
+- **RESP-7.** When more than one order matches the user's description, list them and ask which one before acting on or reporting about one.

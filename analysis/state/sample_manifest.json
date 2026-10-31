@@ -1,0 +1,918 @@
+{
+  "source": "langfuse",
+  "unit": "conversation; every turn (Langfuse trace) is reviewed",
+  "seed": 20261030,
+  "dimension": "role",
+  "preliminary": [
+    "support-0207",
+    "support-0058",
+    "support-0091",
+    "support-0161",
+    "support-0157",
+    "support-0177",
+    "support-0107"
+  ],
+  "batches": [
+    {
+      "name": "uniform_start",
+      "method": "uniform over conversations",
+      "target_conversations": 15,
+      "selected_at": "2026-10-30T16:59:29.223785+00:00",
+      "conversations": [
+        {
+          "session_id": "2b15cdc389734b07a877e2b7f2d580c5",
+          "scenario_id": "support-0080",
+          "role": "support",
+          "trace_ids": [
+            "6f90db4e2f78bcda8af5268e12966ce6",
+            "390df7d3ea45e3332f0c6f3e4b5fe4fa"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "f3f69998c2514357b6b557966d0e59ea",
+          "scenario_id": "support-0063",
+          "role": "shopper",
+          "trace_ids": [
+            "1ebe21835f9e6089ce20dcdb38c00576"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "74cdeab106614e749716c0df1a7ef47f",
+          "scenario_id": "support-0202",
+          "role": "shopper",
+          "trace_ids": [
+            "539209eefdab5697c7ca122298d2841d"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "5de77208ee9e4797baf091fc622bfbcd",
+          "scenario_id": "support-0194",
+          "role": "merchant",
+          "trace_ids": [
+            "23cf7d90955c5f8e92b106e3cad7bc71"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "6e9c74c9ac104b9aa333568f1af600a5",
+          "scenario_id": "support-0099",
+          "role": "shopper",
+          "trace_ids": [
+            "95c4248c5f3f13f788460900446d64e1"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "d802b721e40544f1a5ea5311b80bbde4",
+          "scenario_id": "support-0019",
+          "role": "merchant",
+          "trace_ids": [
+            "4e5d4cfa94345edaad15e975160bf06e"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "4e56a4d880124bef95c84a31cf406fa1",
+          "scenario_id": "support-0135",
+          "role": "shopper",
+          "trace_ids": [
+            "6e991e19938dc2c0e5fe926f849dbe7d"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "1e2c2bdf81254649ab7e313da258460f",
+          "scenario_id": "support-0011",
+          "role": "shopper",
+          "trace_ids": [
+            "858ccf251be5652bd6d714d90c238e33"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "ae2b07b640b04a40bce0b92a5f4d1d6c",
+          "scenario_id": "support-0054",
+          "role": "support",
+          "trace_ids": [
+            "9acf94d3738bf054538ca0b19075905f"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "a45bbe0e847a45d6b57722d2f34e9004",
+          "scenario_id": "support-0065",
+          "role": "shopper",
+          "trace_ids": [
+            "70e31affa8bc1e5fb5a166b25a20f74d"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "17ec1412996a48b59d6642de3f63410e",
+          "scenario_id": "support-0125",
+          "role": "merchant",
+          "trace_ids": [
+            "8fe5862edb95ce51683bd618780da136"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "bfb458ba775a45bdb4aa1c3f7e7357cf",
+          "scenario_id": "support-0057",
+          "role": "shopper",
+          "trace_ids": [
+            "bc57b393bed3b8ffe69424e25e40fea7"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "c90ba1be6d9b4f649553d87c3a21d807",
+          "scenario_id": "support-0167",
+          "role": "shopper",
+          "trace_ids": [
+            "01002511b3eaf4a41a5b3a32664e763e",
+            "6ddb44e72e81b982abfdb0bf4c5e960c",
+            "094cd3563d5034e72e8275650f7c7bf2"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "789a884f24484031bf0fb669b38d5c5a",
+          "scenario_id": "support-0041",
+          "role": "shopper",
+          "trace_ids": [
+            "dcf20980e01034c83a31cf21bbef5dce",
+            "45a2f2e2a637f5d96252788d3e10db14",
+            "21d8c8e286baae964a81924a1325a966",
+            "5e0ec322accb951b974c125843b4d2e7"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "f500eacb41d44a758c2f261408ca31dc",
+          "scenario_id": "support-0028",
+          "role": "support",
+          "trace_ids": [
+            "7c3da7e11471797c0a2c15ae71005c10"
+          ],
+          "reason": "uniform draw"
+        }
+      ],
+      "seed": 20261031
+    },
+    {
+      "name": "cluster_representatives",
+      "method": "k-means on structure, k=8, nearest each centroid",
+      "target_conversations": 15,
+      "selected_at": "2026-10-30T16:59:29.241539+00:00",
+      "conversations": [
+        {
+          "session_id": "f8e5a6cd36634e60857ddc398029c1ce",
+          "scenario_id": "support-0141",
+          "role": "shopper",
+          "trace_ids": [
+            "78082e932e2d3d1fcd711a7e55701dca"
+          ],
+          "reason": "cluster 0 of 8 (size 16)"
+        },
+        {
+          "session_id": "0cd40462bde94e26a2d22280f113b816",
+          "scenario_id": "support-0037",
+          "role": "shopper",
+          "trace_ids": [
+            "558017d1549925eaeefa7aa76262a8be",
+            "b557e82b9a502b8e8c34e089592e2544",
+            "938cfd0bda5b7b1bf44cee69d29bd8be"
+          ],
+          "reason": "cluster 1 of 8 (size 5)"
+        },
+        {
+          "session_id": "f6570f2b0c214cfea8719fb834e5eae5",
+          "scenario_id": "support-0150",
+          "role": "shopper",
+          "trace_ids": [
+            "f8874f2a9d894e5c2e2c9f8af3a3af8b",
+            "0a41d7a4554c49bc47a287a881dec7a9",
+            "7ea74348fda67a25b4c11d63e7185782"
+          ],
+          "reason": "cluster 2 of 8 (size 7)"
+        },
+        {
+          "session_id": "9dc6b5cf59b946adb67c131b0f670aad",
+          "scenario_id": "support-0098",
+          "role": "shopper",
+          "trace_ids": [
+            "66f63b994a9fd6679e745218d7f15d52"
+          ],
+          "reason": "cluster 3 of 8 (size 6)"
+        },
+        {
+          "session_id": "ea25cd251c514576b23ecfdda0a5473a",
+          "scenario_id": "support-0136",
+          "role": "merchant",
+          "trace_ids": [
+            "e3b79b5df824d557b382033777907f99"
+          ],
+          "reason": "cluster 4 of 8 (size 29)"
+        },
+        {
+          "session_id": "107c079e35d548dc8a1e5f09fe06d14f",
+          "scenario_id": "support-0196",
+          "role": "shopper",
+          "trace_ids": [
+            "b31212547af865dfc010c3998603344e"
+          ],
+          "reason": "cluster 5 of 8 (size 30)"
+        },
+        {
+          "session_id": "c795ddd11d9f40858c55106bf604554d",
+          "scenario_id": "support-0009",
+          "role": "shopper",
+          "trace_ids": [
+            "9bddd4ee012cb8186a85eaeeae89cb7b",
+            "7dda2f5527ed6c065f883c59954d10e4"
+          ],
+          "reason": "cluster 6 of 8 (size 31)"
+        },
+        {
+          "session_id": "887f019f462343b38ba7d26d89887cb4",
+          "scenario_id": "support-0101",
+          "role": "shopper",
+          "trace_ids": [
+            "cfcaafe4365385783cf75de9653072e4"
+          ],
+          "reason": "cluster 7 of 8 (size 104)"
+        },
+        {
+          "session_id": "9a0db66cc6e545da9d89a99a05514ec9",
+          "scenario_id": "support-0144",
+          "role": "shopper",
+          "trace_ids": [
+            "c2ca3a86f1808608afd5b1e2ec38b390"
+          ],
+          "reason": "cluster 0 of 8 (size 16)"
+        },
+        {
+          "session_id": "14b4815082e44b8280e6be97eac6510e",
+          "scenario_id": "support-0044",
+          "role": "shopper",
+          "trace_ids": [
+            "cb58a60d2242daa2d5f66e79a8aea2af",
+            "652ad7fa58107fcafb28f7138a0d0af6"
+          ],
+          "reason": "cluster 1 of 8 (size 5)"
+        },
+        {
+          "session_id": "e4eebb7978ce45c48b3e80570635d835",
+          "scenario_id": "support-0154",
+          "role": "merchant",
+          "trace_ids": [
+            "4e0463adca5d214a60788d1805b1f97d",
+            "997c37022f1427cb26c9048126504173",
+            "b38cc30d381f50b6d12f6eac9b967dde"
+          ],
+          "reason": "cluster 2 of 8 (size 7)"
+        },
+        {
+          "session_id": "81c35c92cca94bcaa289be9ba7e95cef",
+          "scenario_id": "support-0096",
+          "role": "shopper",
+          "trace_ids": [
+            "d4fa076505f968f36b163117f0dafb4d"
+          ],
+          "reason": "cluster 3 of 8 (size 6)"
+        },
+        {
+          "session_id": "f4284e261d48433b8d10ff27d250fb37",
+          "scenario_id": "support-0103",
+          "role": "shopper",
+          "trace_ids": [
+            "9c88e38d94ecd05ba051e69b108350f9"
+          ],
+          "reason": "cluster 4 of 8 (size 29)"
+        },
+        {
+          "session_id": "8f9d097b36154fcf8b1b36fd77b0c2ca",
+          "scenario_id": "support-0119",
+          "role": "shopper",
+          "trace_ids": [
+            "6e4f906b7a085e248e04f4cb7c65537f"
+          ],
+          "reason": "cluster 5 of 8 (size 30)"
+        },
+        {
+          "session_id": "6a142163180041baaa7f9520c4481976",
+          "scenario_id": "support-0064",
+          "role": "shopper",
+          "trace_ids": [
+            "1a2ce89683e66bb54e967dee2f7dd81e"
+          ],
+          "reason": "cluster 6 of 8 (size 31)"
+        }
+      ],
+      "seed": 20261030,
+      "clusters": [
+        {
+          "cluster": 0,
+          "size": 16,
+          "tools": {
+            "search_help_center": 16,
+            "find_order": 1
+          }
+        },
+        {
+          "cluster": 1,
+          "size": 5,
+          "tools": {
+            "check_return_eligibility": 5,
+            "search_help_center": 5,
+            "find_order": 3,
+            "get_order": 2
+          }
+        },
+        {
+          "cluster": 2,
+          "size": 7,
+          "tools": {
+            "search_help_center": 7,
+            "get_policy": 7,
+            "check_return_eligibility": 1
+          }
+        },
+        {
+          "cluster": 3,
+          "size": 6,
+          "tools": {
+            "cancel_order": 6,
+            "get_order": 3,
+            "find_order": 1,
+            "check_return_eligibility": 1
+          }
+        },
+        {
+          "cluster": 4,
+          "size": 29,
+          "tools": {
+            "check_return_eligibility": 28,
+            "get_order": 25,
+            "escalate_to_human": 21,
+            "issue_refund": 7
+          }
+        },
+        {
+          "cluster": 5,
+          "size": 30,
+          "tools": {
+            "search_products": 30
+          }
+        },
+        {
+          "cluster": 6,
+          "size": 31,
+          "tools": {
+            "find_order": 31,
+            "check_return_eligibility": 9,
+            "search_products": 1,
+            "list_my_orders": 1
+          }
+        },
+        {
+          "cluster": 7,
+          "size": 104,
+          "tools": {
+            "get_order": 48,
+            "check_return_eligibility": 40,
+            "list_my_orders": 16,
+            "escalate_to_human": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "dimension",
+      "method": "even spread across role",
+      "target_conversations": 30,
+      "selected_at": "2026-10-30T23:50:32.069435+00:00",
+      "conversations": [
+        {
+          "session_id": "0f14672f8c7d4f3f85233255c4832260",
+          "scenario_id": "support-0212",
+          "role": "merchant",
+          "trace_ids": [
+            "05f7fbf11f0f793262c8820c09646175"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "9c3fbd79018e4b2a87c964b37f9a6377",
+          "scenario_id": "support-0131",
+          "role": "shopper",
+          "trace_ids": [
+            "f16f459a75df6ffcc79283c27ccac8bb"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "0de023b78a754a75b836cc0cd56a9720",
+          "scenario_id": "support-0025",
+          "role": "support",
+          "trace_ids": [
+            "8d52a42b39f3864dc1a760d4cdfc561c"
+          ],
+          "reason": "role = support"
+        },
+        {
+          "session_id": "deb7e7976cf34ad486b48f1a3549496a",
+          "scenario_id": "support-0069",
+          "role": "merchant",
+          "trace_ids": [
+            "121a6e5ca0b3be2db005e841d671d957"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "585cba8de3884a848bf10c9d3cda92e2",
+          "scenario_id": "support-0062",
+          "role": "shopper",
+          "trace_ids": [
+            "39137a82b3c02947f36fab007de179de"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "2c2a3ec96e424aef8668e536b6e94adf",
+          "scenario_id": "support-0200",
+          "role": "support",
+          "trace_ids": [
+            "49ffc68afce705192318e5b7ed868019"
+          ],
+          "reason": "role = support"
+        },
+        {
+          "session_id": "cd0334de7b1b44d49dccfceadc6e8f18",
+          "scenario_id": "support-0023",
+          "role": "merchant",
+          "trace_ids": [
+            "15be51448a820d423dfd8f075d9848f0"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "95a4b2c4e1d146f8928b97167058e5e6",
+          "scenario_id": "support-0040",
+          "role": "shopper",
+          "trace_ids": [
+            "059fa505587a3164442495b51d80d1e9"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "394b749c08ec417793fab8364cc7c00e",
+          "scenario_id": "support-0109",
+          "role": "support",
+          "trace_ids": [
+            "2dfd217f04b6266312b4c5f45147fbd2"
+          ],
+          "reason": "role = support"
+        },
+        {
+          "session_id": "0239318fa6774b809cd325fbeb77a270",
+          "scenario_id": "support-0045",
+          "role": "merchant",
+          "trace_ids": [
+            "bbc729fc2420157ee2725d45c80e29c9",
+            "1bd908aa66455e9bdb266720003fd57a"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "ae78219c6e9b4e03bad95a30e628af36",
+          "scenario_id": "support-0090",
+          "role": "shopper",
+          "trace_ids": [
+            "798ef12e94a0c7c16216e1f1bd5bca5d",
+            "38cbbda01b229b11d2ca9e9868c3c5e4"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "eae5edcf1fd64abeb142a4d0b0f352a2",
+          "scenario_id": "support-0030",
+          "role": "support",
+          "trace_ids": [
+            "e877bc088b1c166c86c4448b7e492efe",
+            "ff25a2a58ef49056896286a320e6d4ee"
+          ],
+          "reason": "role = support"
+        },
+        {
+          "session_id": "a3a00228947744b9afed4123a38df7dc",
+          "scenario_id": "support-0174",
+          "role": "merchant",
+          "trace_ids": [
+            "a71781b490ff9dafd73d32a230e9e5f4"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "365169e1f24944bc9bd48beca9c7c5fb",
+          "scenario_id": "support-0139",
+          "role": "shopper",
+          "trace_ids": [
+            "a0498742957af71aa802b5a3f43ed9fa",
+            "6a024166a196ba6534f2adf733cb2612"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "f6c29920d44246a8a6719e5e2ba2978c",
+          "scenario_id": "support-0110",
+          "role": "support",
+          "trace_ids": [
+            "81078f7973eac462bd7d4dd468cbf0c3"
+          ],
+          "reason": "role = support"
+        },
+        {
+          "session_id": "309cd4a844c74b51beec92edd8775014",
+          "scenario_id": "support-0047",
+          "role": "merchant",
+          "trace_ids": [
+            "9133549b33a9f29187c4b498c1e8830a"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "534ebf3b67ae4ccc908d3cc33d0f4cab",
+          "scenario_id": "support-0060",
+          "role": "shopper",
+          "trace_ids": [
+            "977dbfa934ffd4e28b1e57135e42a386"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "d33193eaebd747f2842a4acebec41a7c",
+          "scenario_id": "support-0227",
+          "role": "support",
+          "trace_ids": [
+            "a7f9756bc24919d30449b4fb8f83b6bd"
+          ],
+          "reason": "role = support"
+        },
+        {
+          "session_id": "e14001adbe1d48678ca9492af4dd033a",
+          "scenario_id": "support-0152",
+          "role": "merchant",
+          "trace_ids": [
+            "174a6d75e587b17ee325199e391828cf"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "b4ebcca8a4594e00b585ac03f9762ffb",
+          "scenario_id": "support-0082",
+          "role": "shopper",
+          "trace_ids": [
+            "d8da816cc49b77c8b4722fb3878d8e9f"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "1b378dfde81044379718bdc00db72370",
+          "scenario_id": "support-0180",
+          "role": "support",
+          "trace_ids": [
+            "2ab62b86ee7aafb6fccfcc12e17d6714",
+            "5e9aba950ceba35e3aed8727cf71cb89"
+          ],
+          "reason": "role = support"
+        },
+        {
+          "session_id": "7db4dfafcdb741b9bf16a8b7cdbff7b7",
+          "scenario_id": "support-0204",
+          "role": "merchant",
+          "trace_ids": [
+            "1c248a6586fc59b6600e24199d4ee189"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "72af4505526547a98deaa8aa8c40cae9",
+          "scenario_id": "support-0038",
+          "role": "shopper",
+          "trace_ids": [
+            "bfb8fdb094fcf50dee487580805a2523"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "6dd36191db854d37bd324a06bc6af495",
+          "scenario_id": "support-0162",
+          "role": "support",
+          "trace_ids": [
+            "719b331659588dd303c708fdb1ca4287",
+            "86676a08b520447173cba81ad5b69ed6"
+          ],
+          "reason": "role = support"
+        },
+        {
+          "session_id": "01dbbd75b95547a6be7f3d231066b5a0",
+          "scenario_id": "support-0021",
+          "role": "merchant",
+          "trace_ids": [
+            "f9ae07f08901ba808b08e35e48f6c463"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "48835d18951e46e7aea1a6a7f2b87156",
+          "scenario_id": "support-0176",
+          "role": "shopper",
+          "trace_ids": [
+            "a4baec5941b77541d49c1e8735647c32",
+            "dc6fcc9da2a4b653109b42e0ec3a72b4"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "97ff27d941674f539150101c1a612e34",
+          "scenario_id": "support-0159",
+          "role": "support",
+          "trace_ids": [
+            "9250b1e11e6ac83d9b8735ce936d63d5"
+          ],
+          "reason": "role = support"
+        },
+        {
+          "session_id": "6936b480f0424408873c8efa93fd664b",
+          "scenario_id": "support-0199",
+          "role": "merchant",
+          "trace_ids": [
+            "3a3921df52abaa503baf4d340d0859e0"
+          ],
+          "reason": "role = merchant"
+        },
+        {
+          "session_id": "bd27ff22c7d942ebabcf9e9282e7e2aa",
+          "scenario_id": "support-0067",
+          "role": "shopper",
+          "trace_ids": [
+            "8110104a3327d53d6c5329195cc778fb"
+          ],
+          "reason": "role = shopper"
+        },
+        {
+          "session_id": "46d53605b826462d86ba1aa8a0ea03c2",
+          "scenario_id": "support-0108",
+          "role": "support",
+          "trace_ids": [
+            "9db7fb862f0592cede5f17971c988f3f",
+            "8d82caffffaf69f584a690143b627c04"
+          ],
+          "reason": "role = support"
+        }
+      ],
+      "seed": 20261032,
+      "dimension": "role"
+    },
+    {
+      "name": "depth_search",
+      "method": "depth searches for candidate modes and close negatives",
+      "target_conversations": 25,
+      "selected_at": "2026-10-31T00:29:54.793539+00:00",
+      "conversations": [
+        {
+          "session_id": "a51e7a2ec9aa473bada336083d220f90",
+          "scenario_id": "support-0132",
+          "role": "shopper",
+          "trace_ids": [
+            "816f0848d436854414f78031c5a461ee"
+          ],
+          "reason": "search: unneeded_escalation, first definition: ticket opened on a closed return window"
+        },
+        {
+          "session_id": "c5c54f57f1b540b191263585a2ae2c31",
+          "scenario_id": "support-0134",
+          "role": "shopper",
+          "trace_ids": [
+            "77638e62e24a1d0142b4fff21f5950f0"
+          ],
+          "reason": "search: unneeded_escalation, first definition: ticket opened on a closed return window"
+        },
+        {
+          "session_id": "84ce780ff0a6475f88699f15d8a6c811",
+          "scenario_id": "support-0077",
+          "role": "support",
+          "trace_ids": [
+            "fa98d7d15decad091b025244465f846c",
+            "bffdfbd2db9fb7769fa2746bb349ea53"
+          ],
+          "reason": "search: unneeded_escalation, widened definition: offer to escalate on a closed return window"
+        },
+        {
+          "session_id": "313e8c15825e4e01bead32d51285b764",
+          "scenario_id": "support-0137",
+          "role": "support",
+          "trace_ids": [
+            "9ea944e9b9eb485dc1b6931c30ae0367"
+          ],
+          "reason": "search: unneeded_escalation, widened definition: offer to escalate on a closed return window"
+        },
+        {
+          "session_id": "3868bef95e0548c68bab777e47bb4fd3",
+          "scenario_id": "support-0210",
+          "role": "shopper",
+          "trace_ids": [
+            "28acb8e2b09a614c8ab5c49470ff3e3a"
+          ],
+          "reason": "search: unneeded_escalation, widened definition: offer to escalate on a closed return window"
+        },
+        {
+          "session_id": "51de35a376de40de8007c2e61b32a539",
+          "scenario_id": "support-0024",
+          "role": "merchant",
+          "trace_ids": [
+            "0e6107be2bfbee7ba32d2be7eaf4cb88"
+          ],
+          "reason": "search: assumes_order_without_confirming: several matches, one order named"
+        },
+        {
+          "session_id": "e6a6d523f8c54bc7ba0bce12c15b19da",
+          "scenario_id": "support-0143",
+          "role": "shopper",
+          "trace_ids": [
+            "1a6cbd82de4661270db9400226aff22f"
+          ],
+          "reason": "search: required_escalation_not_made: dispute language with no ticket"
+        },
+        {
+          "session_id": "c811ed81be6546dc8004c68c94bc25de",
+          "scenario_id": "support-0160",
+          "role": "support",
+          "trace_ids": [
+            "0b09b1ddc6aa47880a46477449af3f5e"
+          ],
+          "reason": "search: required_escalation_not_made: dispute language with no ticket"
+        }
+      ]
+    },
+    {
+      "name": "uniform_final",
+      "method": "uniform over conversations, after the taxonomy draft",
+      "target_conversations": 15,
+      "selected_at": "2026-10-31T01:31:47.543999+00:00",
+      "conversations": [
+        {
+          "session_id": "60661d17dad04028a8200ccb363970b7",
+          "scenario_id": "support-0219",
+          "role": "support",
+          "trace_ids": [
+            "d7516826a9f773b97ee7bbb89ec88b13"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "b51695ce511245e8b1ae5594d8a93c6b",
+          "scenario_id": "support-0122",
+          "role": "shopper",
+          "trace_ids": [
+            "ce8d668bca1680f0fcd3d95a533946a6",
+            "dffc60c36a423f77e23448a218543379",
+            "a65ea73f5bb82ce4200c0ee4869ef54d"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "830a8c79df2349b599e9a68b9e0f3cd3",
+          "scenario_id": "support-0225",
+          "role": "merchant",
+          "trace_ids": [
+            "761ee427d9a14ef121bf1f492f5367d6"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "7a2ba34e1ac2432db73e86be3987aa1f",
+          "scenario_id": "support-0106",
+          "role": "merchant",
+          "trace_ids": [
+            "1c0dab289dc7d35cb82f0835514f47ba"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "6301719d3e904c8cabb191882698676a",
+          "scenario_id": "support-0059",
+          "role": "shopper",
+          "trace_ids": [
+            "8fd1446eefa932647192d3d750817fa8"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "3751bf186f9944b8a211b25174341169",
+          "scenario_id": "support-0178",
+          "role": "merchant",
+          "trace_ids": [
+            "026f690b3d142718bde6db71b6e2ae15"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "bd12734b2ebf4b8ab49dddc2aff2ce4c",
+          "scenario_id": "support-0032",
+          "role": "shopper",
+          "trace_ids": [
+            "120938e954e3b70e2839a0ae06642f32"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "3bd3c1b3b08a4cc49c6909659a28e051",
+          "scenario_id": "support-0247",
+          "role": "shopper",
+          "trace_ids": [
+            "40446c7c8fb8edae7372cf3045aea097",
+            "34576505b8ef9a4f946452872185e930",
+            "3972c5f2091b67cea7c42a09c034d1f0",
+            "1da54f2a5656ec602f487629fb245dfe",
+            "13d6e521834791bc96542c5ab19429fe"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "5d1c18b72ab645f68bfb2c1a2becc09f",
+          "scenario_id": "support-0115",
+          "role": "shopper",
+          "trace_ids": [
+            "5264ce544b0a8966ef5fc35aedb7ad22"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "584753651e664c65a6ae2eba08eb2235",
+          "scenario_id": "support-0172",
+          "role": "shopper",
+          "trace_ids": [
+            "28cc3806a1bcf5fec2c711ee640328cd"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "bf136a998ea8488eb757f8ea9d33ec20",
+          "scenario_id": "support-0241",
+          "role": "shopper",
+          "trace_ids": [
+            "507daa6fb7b7bf08e57852e68c3ad14b"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "7125d55f774846a7abfa1ee7bee55450",
+          "scenario_id": "support-0218",
+          "role": "merchant",
+          "trace_ids": [
+            "1af4d150ac89a16ad20733d60ca2a47c"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "47c3a66804d74a6b9d328b0f8b599f39",
+          "scenario_id": "support-0228",
+          "role": "shopper",
+          "trace_ids": [
+            "bf0b9493873ab5fdd76c97ff96e90d84"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "48eb3551113648148b5fcf2e45cec486",
+          "scenario_id": "support-0029",
+          "role": "support",
+          "trace_ids": [
+            "df3d685f8c2a03c138ffc4b50626d540"
+          ],
+          "reason": "uniform draw"
+        },
+        {
+          "session_id": "3eae72a829ef4bd4a33d212cc029c5f0",
+          "scenario_id": "support-0126",
+          "role": "merchant",
+          "trace_ids": [
+            "a2f9b638f2d74640a9a84ca3c024b51f"
+          ],
+          "reason": "uniform draw"
+        }
+      ],
+      "seed": 20261033
+    }
+  ],
+  "population": {
+    "conversations": 250,
+    "traces": 365
+  }
+}
