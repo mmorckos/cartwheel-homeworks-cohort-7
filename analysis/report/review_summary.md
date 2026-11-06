@@ -2,6 +2,38 @@
 
 Claude drafted this from the saved state files for the reviewer to check before submission. No model was called to produce it.
 
+## Summary for the course channel
+
+For posting in the course Discord channel alongside the video. It is written in the reviewer's voice, fits in one message under Discord's 2,000-character limit, and uses lists because Discord does not render tables.
+
+**HW4: error discovery on Cartwheel**
+
+I reviewed 107 traces in 78 conversations from my HW3 run. 71 notes say "no failure observed" and 36 describe a failure. That gave six binary modes, judged on every reviewed trace: 642 judgments, all matching in Langfuse.
+
+**Interface:** generation outputs are empty in my traces, so the supplied normalizer drops 322 agent steps. My review app rebuilds them in model order, grouped by conversation.
+
+**Modes (traces Present, requirement):**
+- `unneeded_escalation`: 10, ESC-5
+- `asks_for_unusable_information`: 5, RESP-6
+- `inconsistent_record_not_escalated`: 4, ESC-3 and RESP-3
+- `asks_for_cancel_reason`: 3, TOOL-8
+- `assumes_order_without_confirming`: 3, RESP-7
+- `required_escalation_not_made`: 3, ESC-3
+
+**Main finding:** the agent escalates too much and too little. It opens or offers tickets for requests that policy already resolves, and elsewhere skips the ticket ESC-3 requires for a dispute.
+
+**Sampling:** uniform, cluster representatives, by role, focused searches, then a final uniform batch (16 traces, 0 new modes).
+
+**Searches:** filters with no model, 13 suggestions: 5 accepted, 8 rejected. Example: 0132 matches 0103's tool sequence, but the user raised a dispute, so ESC-3 requires the ticket.
+
+**Spec:** added ESC-5, RESP-6 and RESP-7; revised TOOL-8. The prompt and tools are unchanged, so the agent doesn't follow them yet.
+
+**AgentDebug:** the closest gap is Retrieval Failure (a missed lookup), but two notes don't support a mode.
+
+**Limits:** counts are sample fractions, not prevalence. The depth batch has 9 traces (target 25). 5 final-batch traces aren't coded, so it leans toward shoppers. `asks_for_cancel_reason` and `inconsistent_record_not_escalated` each rest on two conversations. I skipped optional Part C.
+
+**AI use:** Claude Code built the interface, proposed the groupings, wrote the search filters and drafted the reports. The failure, mode and label decisions are mine, and I wrote 100 of the 107 notes.
+
 ## Size of the review
 
 The review covers 107 distinct traces in 78 conversations, above the required 100.
