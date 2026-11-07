@@ -1,1 +1,409 @@
-{"modes": []}
+{
+  "modes": [
+    {
+      "id": "m-1",
+      "name": "asks_for_unusable_information",
+      "status": "confirmed",
+      "definition": "Present when the reply asks the user for information that no tool accepts and that would not change the agent's next action. Absent when the answer decides the next step, such as which of several orders the user means.",
+      "boundary": "A cancellation reason is a cancel_order input, so asking for one belongs to asks_for_cancel_reason. If the question holds up a step SPEC section 5 requires, label required_escalation_not_made instead.",
+      "nearest_mode": "asks_for_cancel_reason",
+      "requirement": "RESP-6",
+      "evaluator_type": "llm_judge",
+      "likely_fix": "Tell the agent to ask only for information it can pass to a tool or that decides its next step.",
+      "merged_into": "",
+      "created_from": [
+        "1a2ce89683e66bb54e967dee2f7dd81e",
+        "cfcaafe4365385783cf75de9653072e4",
+        "858ccf251be5652bd6d714d90c238e33",
+        "ff25a2a58ef49056896286a320e6d4ee",
+        "1bd908aa66455e9bdb266720003fd57a"
+      ],
+      "positive_trace_ids": [],
+      "rejected_trace_ids": [],
+      "proposed_by": "claude",
+      "revisions": [
+        {
+          "field": "boundary",
+          "old": "If the question holds up a step SPEC section 5 requires, label required_escalation_not_made instead. This mode applies when no required step is being held up.",
+          "new": "A cancellation reason is a cancel_order input, so asking for one belongs to asks_for_cancel_reason. If the question holds up a step SPEC section 5 requires, label required_escalation_not_made instead.",
+          "at": "2026-10-31T00:21:18.860019+00:00"
+        },
+        {
+          "field": "nearest_mode",
+          "old": "required_escalation_not_made",
+          "new": "asks_for_cancel_reason",
+          "at": "2026-10-31T00:21:18.860227+00:00"
+        },
+        {
+          "field": "status",
+          "old": "proposed",
+          "new": "candidate",
+          "at": "2026-10-31T00:33:10.201317+00:00"
+        },
+        {
+          "field": "requirement",
+          "old": "",
+          "new": "RESP-6",
+          "at": "2026-10-31T00:34:57.049664+00:00"
+        },
+        {
+          "field": "status",
+          "old": "candidate",
+          "new": "confirmed",
+          "at": "2026-10-31T02:09:19.389250+00:00"
+        }
+      ],
+      "created_at": "2026-10-30T23:48:01.524066+00:00",
+      "requirement_source": "RESP-6",
+      "example_trace_ids": [
+        "1a2ce89683e66bb54e967dee2f7dd81e",
+        "1bd908aa66455e9bdb266720003fd57a",
+        "858ccf251be5652bd6d714d90c238e33",
+        "cfcaafe4365385783cf75de9653072e4",
+        "ff25a2a58ef49056896286a320e6d4ee"
+      ]
+    },
+    {
+      "id": "m-2",
+      "name": "required_escalation_not_made",
+      "status": "confirmed",
+      "definition": "Present when the user raises a dispute or a request the agent cannot resolve from the help center and the order record (ESC-3), and the turn ends with no successful escalate_to_human call, including when the agent asks permission first. Absent when the agent calls escalate_to_human in that turn, or when ESC-3 does not apply.",
+      "boundary": "Both this mode and unneeded_escalation can show an offer to escalate. If the user raised a dispute or a request the agent cannot resolve, label this mode. If not, label unneeded_escalation. If the request cannot be resolved because the order record is inconsistent, label inconsistent_record_not_escalated.",
+      "nearest_mode": "unneeded_escalation",
+      "requirement": "ESC-3",
+      "evaluator_type": "llm_judge",
+      "likely_fix": "Tell the agent to call escalate_to_human immediately for ESC-3 cases instead of asking permission.",
+      "merged_into": "",
+      "created_from": [
+        "6e991e19938dc2c0e5fe926f849dbe7d",
+        "f16f459a75df6ffcc79283c27ccac8bb"
+      ],
+      "positive_trace_ids": [
+        "f16f459a75df6ffcc79283c27ccac8bb",
+        "9ea944e9b9eb485dc1b6931c30ae0367"
+      ],
+      "rejected_trace_ids": [
+        "1a6cbd82de4661270db9400226aff22f",
+        "0b09b1ddc6aa47880a46477449af3f5e"
+      ],
+      "proposed_by": "claude",
+      "revisions": [
+        {
+          "field": "boundary",
+          "old": "Here the case needs a human and no ticket was opened. In unneeded_escalation a ticket was opened for a request that policy and the order record already resolve.",
+          "new": "Both modes can show an offer to escalate. If the user raised a dispute or a request the agent cannot resolve, label this mode. If not, label unneeded_escalation.",
+          "at": "2026-10-31T00:21:18.861551+00:00"
+        },
+        {
+          "field": "status",
+          "old": "proposed",
+          "new": "candidate",
+          "at": "2026-10-31T00:33:10.202115+00:00"
+        },
+        {
+          "field": "boundary",
+          "old": "Both modes can show an offer to escalate. If the user raised a dispute or a request the agent cannot resolve, label this mode. If not, label unneeded_escalation.",
+          "new": "Both this mode and unneeded_escalation can show an offer to escalate. If the user raised a dispute or a request the agent cannot resolve, label this mode. If not, label unneeded_escalation. If the request cannot be resolved because the order record is inconsistent, label inconsistent_record_not_escalated.",
+          "at": "2026-10-31T01:51:53.965509+00:00"
+        },
+        {
+          "field": "status",
+          "old": "candidate",
+          "new": "confirmed",
+          "at": "2026-10-31T02:09:19.389710+00:00"
+        }
+      ],
+      "created_at": "2026-10-30T23:48:01.525091+00:00",
+      "requirement_source": "ESC-3",
+      "example_trace_ids": [
+        "6e991e19938dc2c0e5fe926f849dbe7d",
+        "9ea944e9b9eb485dc1b6931c30ae0367",
+        "f16f459a75df6ffcc79283c27ccac8bb"
+      ]
+    },
+    {
+      "id": "m-3",
+      "name": "unneeded_escalation",
+      "status": "confirmed",
+      "definition": "Present when the agent calls escalate_to_human, or offers to, for a request it can resolve from policy and the order record, and no case in SPEC section 5 applies. Absent when a section 5 case applies, such as a dispute the user raised.",
+      "boundary": "Both modes can show an offer to escalate. If the user raised a dispute or a request the agent cannot resolve, label required_escalation_not_made. If not, label unneeded_escalation.",
+      "nearest_mode": "required_escalation_not_made",
+      "requirement": "ESC-5",
+      "evaluator_type": "llm_judge",
+      "likely_fix": "Tell the agent that a closed return window with no dispute gets a refusal that cites the policy, with no ticket and no offer of one.",
+      "merged_into": "",
+      "created_from": [
+        "9c88e38d94ecd05ba051e69b108350f9",
+        "059fa505587a3164442495b51d80d1e9",
+        "977dbfa934ffd4e28b1e57135e42a386",
+        "fa98d7d15decad091b025244465f846c",
+        "bffdfbd2db9fb7769fa2746bb349ea53",
+        "40446c7c8fb8edae7372cf3045aea097",
+        "34576505b8ef9a4f946452872185e930",
+        "3972c5f2091b67cea7c42a09c034d1f0"
+      ],
+      "positive_trace_ids": [
+        "05f7fbf11f0f793262c8820c09646175",
+        "28acb8e2b09a614c8ab5c49470ff3e3a",
+        "fa98d7d15decad091b025244465f846c"
+      ],
+      "rejected_trace_ids": [
+        "816f0848d436854414f78031c5a461ee",
+        "77638e62e24a1d0142b4fff21f5950f0",
+        "e3b79b5df824d557b382033777907f99",
+        "9ea944e9b9eb485dc1b6931c30ae0367"
+      ],
+      "proposed_by": "claude",
+      "revisions": [
+        {
+          "field": "definition",
+          "old": "Present when the agent calls escalate_to_human for a request it can resolve from policy and the order record, and no case in SPEC section 5 applies. Absent when a section 5 case applies, such as a dispute.",
+          "new": "Present when the agent calls escalate_to_human, or offers to, for a request it can resolve from policy and the order record, and no case in SPEC section 5 applies. Absent when a section 5 case applies, such as a dispute the user raised.",
+          "at": "2026-10-31T00:21:18.861281+00:00"
+        },
+        {
+          "field": "boundary",
+          "old": "Here a ticket was opened that the case did not need. In required_escalation_not_made the case needed a ticket and none was opened.",
+          "new": "Both modes can show an offer to escalate. If the user raised a dispute or a request the agent cannot resolve, label required_escalation_not_made. If not, label unneeded_escalation.",
+          "at": "2026-10-31T00:21:18.861284+00:00"
+        },
+        {
+          "field": "likely_fix",
+          "old": "Tell the agent that a closed return window with no dispute gets a refusal that cites the policy, not a ticket.",
+          "new": "Tell the agent that a closed return window with no dispute gets a refusal that cites the policy, with no ticket and no offer of one.",
+          "at": "2026-10-31T00:21:18.861285+00:00"
+        },
+        {
+          "field": "status",
+          "old": "proposed",
+          "new": "candidate",
+          "at": "2026-10-31T00:33:10.202454+00:00"
+        },
+        {
+          "field": "requirement",
+          "old": "",
+          "new": "ESC-5",
+          "at": "2026-10-31T00:34:57.050459+00:00"
+        },
+        {
+          "field": "status",
+          "old": "candidate",
+          "new": "confirmed",
+          "at": "2026-10-31T02:09:19.390169+00:00"
+        }
+      ],
+      "created_at": "2026-10-30T23:48:01.525418+00:00",
+      "requirement_source": "ESC-5",
+      "example_trace_ids": [
+        "059fa505587a3164442495b51d80d1e9",
+        "05f7fbf11f0f793262c8820c09646175",
+        "28acb8e2b09a614c8ab5c49470ff3e3a",
+        "34576505b8ef9a4f946452872185e930",
+        "3972c5f2091b67cea7c42a09c034d1f0",
+        "40446c7c8fb8edae7372cf3045aea097",
+        "977dbfa934ffd4e28b1e57135e42a386",
+        "9c88e38d94ecd05ba051e69b108350f9",
+        "bffdfbd2db9fb7769fa2746bb349ea53",
+        "fa98d7d15decad091b025244465f846c"
+      ]
+    },
+    {
+      "id": "m-4",
+      "name": "refund_promised_without_tool",
+      "status": "candidate",
+      "definition": "Present when the reply tells the user a refund has been or will be issued, and no issue_refund result in the turn confirms it. Absent when the reply reports what an issue_refund result confirms, or only explains refund policy or eligibility.",
+      "boundary": "This mode covers claims about a refund. A reply that reports a refund the tool confirmed is a close negative. No close neighboring mode yet.",
+      "nearest_mode": "",
+      "requirement": "RESP-2",
+      "evaluator_type": "llm_judge",
+      "likely_fix": "Have the agent mention a refund only from an issue_refund result, or have cancel_order return what happens to the payment.",
+      "merged_into": "",
+      "created_from": [
+        "95c4248c5f3f13f788460900446d64e1"
+      ],
+      "positive_trace_ids": [],
+      "rejected_trace_ids": [],
+      "proposed_by": "claude",
+      "revisions": [
+        {
+          "field": "status",
+          "old": "proposed",
+          "new": "candidate",
+          "at": "2026-10-31T00:33:10.202743+00:00"
+        }
+      ],
+      "created_at": "2026-10-30T23:48:01.525880+00:00",
+      "requirement_source": "RESP-2",
+      "example_trace_ids": [
+        "95c4248c5f3f13f788460900446d64e1"
+      ]
+    },
+    {
+      "id": "m-5",
+      "name": "asks_for_cancel_reason",
+      "status": "confirmed",
+      "definition": "Present when the user asks to cancel an order and the reply asks for a cancellation reason instead of checking or cancelling the order. Absent when the agent checks or cancels the order without asking, as when it fills in the reason itself.",
+      "boundary": "The reason is an input cancel_order requires, so this is not asks_for_unusable_information, and the fix is different.",
+      "nearest_mode": "asks_for_unusable_information",
+      "requirement": "TOOL-8",
+      "evaluator_type": "llm_judge",
+      "likely_fix": "Make the reason optional in cancel_order, or tell the agent to take it from the user's request.",
+      "merged_into": "",
+      "created_from": [
+        "9db7fb862f0592cede5f17971c988f3f",
+        "8d82caffffaf69f584a690143b627c04",
+        "2dfd217f04b6266312b4c5f45147fbd2"
+      ],
+      "positive_trace_ids": [],
+      "rejected_trace_ids": [],
+      "proposed_by": "claude",
+      "revisions": [
+        {
+          "field": "status",
+          "old": "proposed",
+          "new": "candidate",
+          "at": "2026-10-31T00:33:10.203010+00:00"
+        },
+        {
+          "field": "requirement",
+          "old": "",
+          "new": "TOOL-8",
+          "at": "2026-10-31T00:34:57.050778+00:00"
+        },
+        {
+          "field": "status",
+          "old": "candidate",
+          "new": "confirmed",
+          "at": "2026-10-31T02:09:19.390535+00:00"
+        }
+      ],
+      "created_at": "2026-10-31T00:21:18.861957+00:00",
+      "requirement_source": "TOOL-8",
+      "example_trace_ids": [
+        "2dfd217f04b6266312b4c5f45147fbd2",
+        "8d82caffffaf69f584a690143b627c04",
+        "9db7fb862f0592cede5f17971c988f3f"
+      ]
+    },
+    {
+      "id": "m-6",
+      "name": "assumes_order_without_confirming",
+      "status": "confirmed",
+      "definition": "Present when a lookup returns more than one order that fits the user's description and the reply treats one as the order the user means without first asking which. Absent when only one order fits, or when the reply asks which order before going further.",
+      "boundary": "This mode is not asking when the agent should. asks_for_unusable_information is asking when it should not. A question about which order the user means is a close negative for both.",
+      "nearest_mode": "asks_for_unusable_information",
+      "requirement": "RESP-7",
+      "evaluator_type": "llm_judge",
+      "likely_fix": "Tell the agent that several matches mean listing them and asking which one.",
+      "merged_into": "",
+      "created_from": [
+        "15be51448a820d423dfd8f075d9848f0",
+        "8110104a3327d53d6c5329195cc778fb"
+      ],
+      "positive_trace_ids": [
+        "cb58a60d2242daa2d5f66e79a8aea2af"
+      ],
+      "rejected_trace_ids": [
+        "0e6107be2bfbee7ba32d2be7eaf4cb88",
+        "70e31affa8bc1e5fb5a166b25a20f74d"
+      ],
+      "proposed_by": "claude",
+      "revisions": [
+        {
+          "field": "status",
+          "old": "proposed",
+          "new": "candidate",
+          "at": "2026-10-31T00:33:10.203274+00:00"
+        },
+        {
+          "field": "requirement",
+          "old": "",
+          "new": "RESP-7",
+          "at": "2026-10-31T00:34:57.051059+00:00"
+        },
+        {
+          "field": "status",
+          "old": "candidate",
+          "new": "confirmed",
+          "at": "2026-10-31T02:09:19.390900+00:00"
+        }
+      ],
+      "created_at": "2026-10-31T00:21:18.862345+00:00",
+      "requirement_source": "RESP-7",
+      "example_trace_ids": [
+        "15be51448a820d423dfd8f075d9848f0",
+        "8110104a3327d53d6c5329195cc778fb",
+        "cb58a60d2242daa2d5f66e79a8aea2af"
+      ]
+    },
+    {
+      "id": "m-7",
+      "name": "reply_omits_order_details",
+      "status": "proposed",
+      "definition": "Present when the agent has retrieved the order or orders the user is asking about and the reply does not tell the user which order it found or what the record shows. Absent when the reply identifies the order and gives the details the request needs.",
+      "boundary": "This mode is about what the reply leaves out after a lookup. assumes_order_without_confirming is about treating one of several matches as the right one.",
+      "nearest_mode": "assumes_order_without_confirming",
+      "requirement": "",
+      "evaluator_type": "llm_judge",
+      "likely_fix": "Tell the agent to name the order it found and the details that answer the request in its final reply.",
+      "merged_into": "",
+      "created_from": [
+        "798ef12e94a0c7c16216e1f1bd5bca5d",
+        "77638e62e24a1d0142b4fff21f5950f0"
+      ],
+      "positive_trace_ids": [],
+      "rejected_trace_ids": [],
+      "proposed_by": "claude",
+      "revisions": [],
+      "created_at": "2026-10-31T01:31:03.455505+00:00",
+      "requirement_source": "",
+      "example_trace_ids": [
+        "77638e62e24a1d0142b4fff21f5950f0",
+        "798ef12e94a0c7c16216e1f1bd5bca5d"
+      ]
+    },
+    {
+      "id": "m-8",
+      "name": "inconsistent_record_not_escalated",
+      "status": "confirmed",
+      "definition": "Present when an order record the agent retrieved in the conversation is internally inconsistent, for example delivered before shipped, and the turn ends with no successful escalate_to_human call. Absent when the record is consistent, or when the agent escalates in that turn.",
+      "boundary": "This mode is limited to inconsistent order records. Other requests the agent cannot resolve belong to required_escalation_not_made.",
+      "nearest_mode": "required_escalation_not_made",
+      "requirement": "ESC-3, RESP-3",
+      "evaluator_type": "code",
+      "likely_fix": "Have get_order return data_issues as check_return_eligibility does, and tell the agent to escalate when the list is not empty.",
+      "merged_into": "",
+      "created_from": [
+        "a4baec5941b77541d49c1e8735647c32",
+        "dc6fcc9da2a4b653109b42e0ec3a72b4",
+        "2ab62b86ee7aafb6fccfcc12e17d6714",
+        "5e9aba950ceba35e3aed8727cf71cb89"
+      ],
+      "positive_trace_ids": [],
+      "rejected_trace_ids": [],
+      "proposed_by": "claude",
+      "revisions": [
+        {
+          "field": "status",
+          "old": "proposed",
+          "new": "candidate",
+          "at": "2026-10-31T01:51:53.966697+00:00"
+        },
+        {
+          "field": "status",
+          "old": "candidate",
+          "new": "confirmed",
+          "at": "2026-10-31T02:09:19.391247+00:00"
+        }
+      ],
+      "created_at": "2026-10-31T01:51:53.966091+00:00",
+      "requirement_source": "ESC-3, RESP-3",
+      "example_trace_ids": [
+        "2ab62b86ee7aafb6fccfcc12e17d6714",
+        "5e9aba950ceba35e3aed8727cf71cb89",
+        "a4baec5941b77541d49c1e8735647c32",
+        "dc6fcc9da2a4b653109b42e0ec3a72b4"
+      ]
+    }
+  ]
+}
